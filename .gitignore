@@ -1,0 +1,17 @@
+build/
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!cmake/Presets.json
+compile_commands.json
+.deps/
+*.swp
+*.swo
+*~

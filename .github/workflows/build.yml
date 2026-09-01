@@ -1,0 +1,40 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  gtk-build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-22 cmake ninja-build libclamav-dev \
+            libgtk-4-dev libadwaita-1-dev
+      - run: cmake --preset gtk
+      - run: cmake --build --preset gtk
+
+  qt-build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-22 cmake ninja-build libclamav-dev qt6-base-dev
+      - run: cmake --preset qt
+      - run: cmake --build --preset qt
+
+  clang-tidy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-22 cmake ninja-build libclamav-dev
+      - run: cmake --preset host
+      - run: cmake --build --preset host
+      - run: find libmimir/src -name '*.cpp' | xargs clang-tidy-22

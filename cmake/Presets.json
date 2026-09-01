@@ -1,0 +1,71 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "gtk",
+      "displayName": "GTK4 Frontend",
+      "generator": "Ninja",
+      "binaryDir": "build/gtk",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "ENABLE_GTK": "ON",
+        "ENABLE_QT": "OFF"
+      }
+    },
+    {
+      "name": "qt",
+      "displayName": "Qt6 Frontend",
+      "generator": "Ninja",
+      "binaryDir": "build/qt",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "ENABLE_GTK": "OFF",
+        "ENABLE_QT": "ON"
+      }
+    },
+    {
+      "name": "host",
+      "displayName": "Host Tests",
+      "generator": "Ninja",
+      "binaryDir": "build/host",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "ENABLE_GTK": "OFF",
+        "ENABLE_QT": "OFF"
+      }
+    },
+    {
+      "name": "all",
+      "displayName": "All Frontends",
+      "generator": "Ninja",
+      "binaryDir": "build/all",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "ENABLE_GTK": "ON",
+        "ENABLE_QT": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "gtk",
+      "configurePreset": "gtk"
+    },
+    {
+      "name": "qt",
+      "configurePreset": "qt"
+    },
+    {
+      "name": "host",
+      "configurePreset": "host"
+    },
+    {
+      "name": "all",
+      "configurePreset": "all"
+    }
+  ]
+}
