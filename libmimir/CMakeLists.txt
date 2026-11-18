@@ -18,11 +18,15 @@ target_sources(mimir
 target_compile_features(mimir PUBLIC cxx_std_26)
 target_compile_options(mimir PRIVATE -Wall -Wextra -Wpedantic)
 
-find_library(CLAMAV clamav)
-if(NOT CLAMAV_FOUND)
+find_library(CLAMAV_LIBRARY NAMES clamav PATHS /usr/lib /usr/lib64 /usr/local/lib NO_DEFAULT_PATH)
+if(NOT CLAMAV_LIBRARY)
+  find_library(CLAMAV_LIBRARY NAMES clamav)
+endif()
+if(NOT CLAMAV_LIBRARY)
   message(FATAL_ERROR "libclamav not found")
 endif()
-target_link_options(mimir PUBLIC -lclamav)
+message(STATUS "Found libclamav: ${CLAMAV_LIBRARY}")
+target_link_libraries(mimir PUBLIC ${CLAMAV_LIBRARY})
 
 find_program(CLAMDSCAN clamdscan)
 find_program(CLAMSCAN clamscan)

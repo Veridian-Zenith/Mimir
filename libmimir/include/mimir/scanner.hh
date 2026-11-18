@@ -56,7 +56,6 @@ public:
   [[nodiscard]] scan_progress last_progress() const;
 
 private:
-  void* ctx_ = nullptr;
   scan_progress progress_;
 };
 
