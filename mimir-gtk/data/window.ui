@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="MimirWindow" parent="GtkApplicationWindow">
+    <property name="title">Mimir</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">16</property>
+        <property name="margin-top">24</property>
+        <property name="margin-bottom">24</property>
+        <property name="margin-start">24</property>
+        <property name="margin-end">24</property>
+        <child>
+          <object class="GtkLabel" id="title_label">
+            <property name="label">Mimir - ClamAV Scanner</property>
+            <property name="css-name">title-label</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="drop_zone">
+            <property name="orientation">vertical</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="spacing">8</property>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">document-open-symbolic</property>
+                <property name="pixel-size">48</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Drop files or folders here to scan</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="halign">center</property>
+            <property name="spacing">16</property>
+            <child>
+              <object class="GtkSpinner" id="progress_spinner">
+                <property name="width-request">24</property>
+                <property name="height-request">24</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="status_label">
+                <property name="label">Ready</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="scan_button">
+            <property name="label">Scan</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
